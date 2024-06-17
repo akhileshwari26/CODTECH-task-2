@@ -1,53 +1,146 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
-public class main {
-    private static Scanner scanner = new Scanner(System.in);
+class Grade {
+    private String subject;
+    private double numericalGrade;
 
-    public static void main(String[] args) {
-        System.out.print("Enter student's name: ");
-        String name = scanner.nextLine();
-        student student = new student(name);
-
-        boolean running = true;
-
-        while (running) {
-            System.out.println("\n--- Grade Management System ---");
-            System.out.println("1. Add Grade");
-            System.out.println("2. Display Grades");
-            System.out.println("3. Exit");
-            System.out.print("Choose an option: ");
-            int choice = scanner.nextInt();
-            scanner.nextLine();
-
-            switch (choice) {
-                case 1:
-                    addGrade(student);
-                    break;
-                case 2:
-                    student.displayGrades();
-                    break;
-                case 3:
-                    running = false;
-                    break;
-                default:
-                    System.out.println("Invalid option.");
-            }
-        }
-
-        scanner.close();
+    public Grade(String subject, double numericalGrade) {
+        this.subject = subject;
+        this.numericalGrade = numericalGrade;
     }
 
-    private static void addGrade(student student) {
-        System.out.print("Enter subject: ");
-        String subject = scanner.nextLine();
-        System.out.print("Enter score: ");
-        double score = scanner.nextDouble();
-        scanner.nextLine();
+    public String getSubject() {
+        return subject;
+    }
 
-        grade grade = new grade(subject, score);
-        student.addGrade(grade);
-
-        System.out.println("Grade added successfully.");
+    public double getNumericalGrade() {
+        return numericalGrade;
     }
 }
 
+class Student {
+    private ArrayList<Grade> grades;
+
+    public Student() {
+        this.grades = new ArrayList<>();
+    }
+
+    public void addGrade(String subject, double numericalGrade) {
+        grades.add(new Grade(subject, numericalGrade));
+    }
+
+    public double calculateAverage() {
+        double total = 0;
+        for (Grade grade : grades) {
+            total += grade.getNumericalGrade();
+        }
+        return grades.size() > 0 ? total / grades.size() : 0;
+    }
+
+    public String calculateLetterGrade() {
+        double average = calculateAverage();
+        return GradeConverter.toLetterGrade(average);
+    }
+
+    public double calculateGPA() {
+        double average = calculateAverage();
+        return GradeConverter.toGPA(average);
+    }
+
+    public void displayGrades() {
+        for (Grade grade : grades) {
+            System.out.println("Subject: " + grade.getSubject() + ", Grade: " + grade.getNumericalGrade());
+        }
+    }
+}
+
+class GradeConverter {
+    public static String toLetterGrade(double grade) {
+        if (grade >= 90) return "A";
+        else if (grade >= 80) return "B";
+        else if (grade >= 70) return "C";
+        else if (grade >= 60) return "D";
+        else return "F";
+    }
+
+    public static double toGPA(double grade) {
+        if (grade >= 90) return 4.0;
+        else if (grade >= 80) return 3.0;
+        else if (grade >= 70) return 2.0;
+        else if (grade >= 60) return 1.0;
+        else return 0.0;
+    }
+}
+
+public class StudentGradeManager {
+    private static Scanner scanner = new Scanner(System.in);
+    private static Student student = new Student();
+
+    public static void main(String[] args) {
+        boolean running = true;
+        while (running) {
+            printMenu();
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // consume newline
+
+            switch (choice) {
+                case 1:
+                    addGrade();
+                    break;
+                case 2:
+                    displayGrades();
+                    break;
+                case 3:
+                    displayAverageGrade();
+                    break;
+                case 4:
+                    displayLetterGrade();
+                    break;
+                case 5:
+                    displayGPA();
+                    break;
+                case 6:
+                    running = false;
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+        }
+    }
+
+    private static void printMenu() {
+        System.out.println("1. Add Grade");
+        System.out.println("2. Display Grades");
+        System.out.println("3. Display Average Grade");
+        System.out.println("4. Display Letter Grade");
+        System.out.println("5. Display GPA");
+        System.out.println("6. Exit");
+    }
+
+    private static void addGrade() {
+        System.out.print("Enter subject: ");
+        String subject = scanner.nextLine();
+        System.out.print("Enter grade: ");
+        double grade = scanner.nextDouble();
+        scanner.nextLine(); // consume newline
+
+        student.addGrade(subject, grade);
+    }
+
+    private static void displayGrades() {
+        student.displayGrades();
+    }
+
+    private static void displayAverageGrade() {
+        System.out.println("Average Grade: " + student.calculateAverage());
+    }
+
+    private static void displayLetterGrade() {
+        System.out.println("Letter Grade: " + student.calculateLetterGrade());
+    }
+
+    private static void displayGPA() {
+        System.out.println("GPA: " + student.calculateGPA());
+    }
+}
