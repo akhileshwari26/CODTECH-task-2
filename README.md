@@ -62,12 +62,7 @@ Implementation Details
 
 - ![image](https://github.com/akhileshwari26/CODTECH-task-2/assets/172424840/35921ebf-0816-4380-9d72-f276b6efe8ab)
 
-
-![image](https://github.com/akhileshwari26/CODTECH-task-2/assets/172424840/86d0d4db-08eb-436a-bfe0-0d7030aa6d13)
-
-![image](https://github.com/akhileshwari26/CODTECH-task-2/assets/172424840/e3e0ef14-a182-4d27-8bf6-0a65c3c91b32)
-
-![image](https://github.com/akhileshwari26/CODTECH-task-2/assets/172424840/e538ac1f-82f3-418b-a272-3f8c74c13564)
-
-![image](https://github.com/akhileshwari26/CODTECH-task-2/assets/172424840/36262257-0a4d-4ff2-b92b-3c252e6a17ef)
+![image](https://github.com/akhileshwari26/CODTECH-task-2/assets/172424840/12e99f2a-914c-49a6-a792-818c37cda1ba)
+![image](https://github.com/akhileshwari26/CODTECH-task-2/assets/172424840/f88b2826-23fb-4ff4-aa6b-3ff79881f262)
+![image](https://github.com/akhileshwari26/CODTECH-task-2/assets/172424840/e6f89a51-6f0a-487d-9dee-1031594d659c)
 
